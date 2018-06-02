@@ -64,8 +64,6 @@ window.customElements.whenDefined('eg-renderer-ogdf').then(() => {
       node.width = nodeSizeScale(degree.get(node.index))
       node.height = nodeSizeScale(degree.get(node.index))
       node.fillColor = nodeColorScale(node.cluster)
-      // node.fillOpacity = node.cluster === -1 ? 0 : 1
-      // node.fillOpacity = sourceNodes.has(node.index) ? 1 : 0
       node.labelFillColor = nodeColorScale(node.cluster)
       if (!sourceNodes.has(node.index)) {
         node.label = ''
@@ -77,8 +75,6 @@ window.customElements.whenDefined('eg-renderer-ogdf').then(() => {
     for (const link of data.links) {
       link.strokeWidth = linkStrokeWidthScale(link.weight)
       link.strokeOpacity = linkStrokeOpacityScale(link.weight)
-      // link.strokeOpacity = (data.nodes[link.source].cluster === -1) || (data.nodes[link.target].cluster === -1) ? 0 : 1
-      // link.strokeOpacity = sourceNodes.has(link.source) && sourceNodes.has(link.target) ? 0.2 : 0
     }
 
     for (const key of data.graph.groups) {
@@ -119,18 +115,9 @@ window.customElements.whenDefined('eg-renderer-ogdf').then(() => {
     const minDegree = 5
     data.links = data.links.filter(({source, target}) => degree.get(source) >= minDegree && degree.get(target) >= minDegree)
     data.nodes = data.nodes.filter(({index}) => degree.get(index) >= minDegree)
-
-    const select = document.getElementById('key')
-    for (const key of data.graph.groups) {
-      const e = document.createElement('option')
-      e.setAttribute('value', key)
-      e.textContent = key
-      select.appendChild(e)
-    }
   })
 
   const reset = () => {
-    document.getElementById('current').textContent = 'all'
     renderer.nodeWidthProperty = 'width'
     renderer.nodeHeightProperty = `height`
     renderer.nodeFillOpacityProperty = 'none'
@@ -142,7 +129,6 @@ window.customElements.whenDefined('eg-renderer-ogdf').then(() => {
   }
 
   const setKey = (key) => {
-    document.getElementById('current').textContent = key
     renderer.nodeWidthProperty = `width-${key}`
     renderer.nodeHeightProperty = `height-${key}`
     renderer.nodeFillOpacityProperty = key
@@ -171,14 +157,5 @@ window.customElements.whenDefined('eg-renderer-ogdf').then(() => {
         index += 1
       }
     }, 1000)
-  })
-
-  document.getElementById('key').addEventListener('change', (event) => {
-    const key = event.target.value
-    if (key === 'all') {
-      reset()
-    } else {
-      setKey(key)
-    }
   })
 })

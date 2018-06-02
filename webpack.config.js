@@ -1,4 +1,5 @@
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const options = {
   module: {
@@ -15,6 +16,12 @@ const options = {
   externals: {
   },
   plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: 'node_modules/bulma/css/bulma.css',
+        to: 'vendor'
+      }
+    ])
   ],
   resolve: {
     extensions: ['.js']
@@ -30,6 +37,12 @@ const options = {
   optimization: {
     minimize: false
   }
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  Object.assign(options, {
+    devtool: 'inline-source-map'
+  })
 }
 
 module.exports = options
