@@ -26,13 +26,10 @@ const options = {
   },
   node: {
     fs: 'empty'
+  },
+  optimization: {
+    minimize: false
   }
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  Object.assign(options, {
-    devtool: 'inline-source-map'
-  })
 }
 
 module.exports = options
