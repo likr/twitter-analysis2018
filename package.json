@@ -1,0 +1,28 @@
+{
+  "name": "twitter-analysis2018",
+  "description": "Description of your app.",
+  "version": "0.0.0",
+  "author": "Yosuke Onoue <onoue@likr-lab.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/likr/influencer-network.git"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production webpack",
+    "start": "webpack-dev-server",
+    "deploy": "npm run build && gh-pages -d public"
+  },
+  "dependencies": {
+    "@webcomponents/custom-elements": "^1.0.0",
+    "d3": "^4.13.0",
+    "eg-renderer": "git+https://github.com/likr/eg-renderer-canvas.git",
+    "eg-renderer-ogdf": "git+https://github.com/likr/eg-renderer-ogdf.git"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.2.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.0",
+    "webpack-dev-server": "^3.1.4"
+  }
+}

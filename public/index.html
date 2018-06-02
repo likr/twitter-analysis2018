@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Twitter use in scientific communication revealed by visualization of information spreading by influencers within half a year after the Fukushima Daiichi nuclear power plant accident</title>
+<style>
+body {
+  margin: 0;
+}
+#wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 50px;
+}
+#controller {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  background-color: #888;
+}
+#current {
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+  font-size: 40pt;
+  margin: 10px;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+<eg-renderer-ogdf
+  id="renderer"
+  src="data-p002-weekly.json"
+  transition-duration="800"
+  node-id-property="index"
+  node-label-property="label"
+  default-node-stroke-width="0"
+  default-node-label-stroke-width="150"
+  default-node-label-stroke-color="#fff"
+  default-link-stroke-color="#444"
+  layout-method="fmmm"
+  fmmm-unit-edge-length="10000"
+>
+</eg-renderer-ogdf>
+</div>
+<div id="controller">
+  <div>
+    <button id="center">center</button>
+    <button id="start">start</button>
+    <select id="key">
+      <option value="all" selected>all</option>
+    </select>
+  </div>
+</div>
+<p id="current"></p>
+<script src="bundle.js"></script>
+</body>
+</html>
