@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Visualization of the Retweeted Network After the Fukushima Daiichi Nuclear Power Plant Accident</title>
+<link rel="stylesheet" href="vendor/bulma.css">
+<style>
+eg-renderer-ogdf {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+}
+
+#wrapper {
+  box-shadow: 0 0 1em;
+  margin: 1rem;
+}
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Visualization of the Retweeted Network After the Fukushima Daiichi Nuclear Power Plant Accident</h1>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p>
+        This is an interactive demo of the visualization result in our paper entitled "Twitter use in scientific communication revealed by visualization of information spreading by influencers within half a year after the Fukushima Daiichi nuclear power plant accident".
+      </p>
+      <figure id="wrapper" class="image is-3by2">
+        <eg-renderer-ogdf
+          id="renderer"
+          src="data-p002-weekly.json"
+          transition-duration="800"
+          node-id-property="index"
+          node-label-property="label"
+          default-node-stroke-width="0"
+          default-node-label-stroke-width="150"
+          default-node-label-stroke-color="#fff"
+          default-link-stroke-color="#444"
+          layout-method="fmmm"
+          fmmm-unit-edge-length="10000"
+        >
+        </eg-renderer-ogdf>
+      </figure>
+      <div>
+        <div class="field">
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <button id="center" class="button">Reset zoom</button>
+          </div>
+          <div class="control">
+            <button id="start" class="button">Start animation</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="content">
+        <p>&copy; 2018 Masaharu Tsubokura, Yosuke Onoue, Hiroyuki  A. Torii, Saori Kobayashi, Kohei Mori, Yoshitaka Nishikawa, Akihiko Ozaki, and Kazuko Uno</p>
+        <p>This work was supported by Research on the Health Effects of Radiation directed by the Ministry of Environment, Japan.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="bundle.js" async></script>
+</body>
+</html>
